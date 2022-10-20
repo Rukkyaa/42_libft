@@ -6,7 +6,7 @@
 /*   By: rukkyaa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 17:08:55 by rukkyaa           #+#    #+#             */
-/*   Updated: 2022/10/14 17:12:49 by rukkyaa          ###   ########.fr       */
+/*   Updated: 2022/10/20 23:40:19 by rukkyaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,14 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	return (ft_strncmp((const char *)s1, (const char *)s2, n));
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		if (((unsigned char *)s1)[i] != ((unsigned char *)s2)[i])
+			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+		i ++;
+	}
+	return (0);
 }
