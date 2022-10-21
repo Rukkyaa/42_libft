@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rukkyaa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 17:20:02 by rukkyaa           #+#    #+#             */
-/*   Updated: 2022/10/21 23:26:17 by rukkyaa          ###   ########.fr       */
+/*   Created: 2022/10/21 16:59:33 by rukkyaa           #+#    #+#             */
+/*   Updated: 2022/10/21 17:21:52 by rukkyaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	void	*content;
 	size_t	i;
 
-	i = 0;
-	if (nmemb * size < size)
-		return (NULL);
-	content = malloc (nmemb * size);
-	if (!content)
-		return (NULL);
-	while (i < nmemb * size)
-	{
-		((unsigned char *)content)[i] = 0;
-		i ++;
-	}
-	return (content);
+	while (*s1 && ft_strchr(set, *s1))
+		s1 ++;
+	i = ft_strlen(s1);
+	while (i && ft_strchr(set, s1[i]))
+		i --;
+	return (ft_substr(s1, 0, i + 1));
 }
-
-/*
-int	main(void)
-{
-	void	*mem;
-
-	mem = ft_calloc(2, 2);
-	(void)mem;
-}
-*/

@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rukkyaa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 17:20:02 by rukkyaa           #+#    #+#             */
-/*   Updated: 2022/10/21 23:26:17 by rukkyaa          ###   ########.fr       */
+/*   Created: 2022/10/21 13:19:00 by rukkyaa           #+#    #+#             */
+/*   Updated: 2022/10/21 13:44:10 by rukkyaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	void	*content;
-	size_t	i;
-
-	i = 0;
-	if (nmemb * size < size)
-		return (NULL);
-	content = malloc (nmemb * size);
-	if (!content)
-		return (NULL);
-	while (i < nmemb * size)
+	if (src < dest)
 	{
-		((unsigned char *)content)[i] = 0;
-		i ++;
+		while (n)
+		{
+			((unsigned char *)dest)[n - 1] = ((unsigned char *)src)[n - 1];
+			n --;
+		}
 	}
-	return (content);
+	else
+		ft_memcpy(dest, src, n);
+	return (dest);
 }
-
-/*
-int	main(void)
-{
-	void	*mem;
-
-	mem = ft_calloc(2, 2);
-	(void)mem;
-}
-*/

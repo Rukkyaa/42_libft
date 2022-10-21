@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rukkyaa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 17:20:02 by rukkyaa           #+#    #+#             */
-/*   Updated: 2022/10/21 23:26:17 by rukkyaa          ###   ########.fr       */
+/*   Created: 2022/10/21 16:46:50 by rukkyaa           #+#    #+#             */
+/*   Updated: 2022/10/21 16:58:50 by rukkyaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	void	*content;
-	size_t	i;
+	char			*dup;
+	unsigned int	i;
 
-	i = 0;
-	if (nmemb * size < size)
+	dup = ft_strdup(s);
+	i = -1;
+	if (!dup || !f)
 		return (NULL);
-	content = malloc (nmemb * size);
-	if (!content)
-		return (NULL);
-	while (i < nmemb * size)
-	{
-		((unsigned char *)content)[i] = 0;
-		i ++;
-	}
-	return (content);
+	while (dup[++i])
+		dup[i] = f(i, dup[i]);
+	return (dup);
 }
-
-/*
-int	main(void)
-{
-	void	*mem;
-
-	mem = ft_calloc(2, 2);
-	(void)mem;
-}
-*/

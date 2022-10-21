@@ -6,7 +6,7 @@
 /*   By: rukkyaa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 17:14:33 by rukkyaa           #+#    #+#             */
-/*   Updated: 2022/10/14 17:18:44 by rukkyaa          ###   ########.fr       */
+/*   Updated: 2022/10/21 15:24:12 by rukkyaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ char	*ft_strdup(const char *s)
 		dup_str[index] = s[index];
 		index ++;
 	}
+	dup_str[index] = '\0';
 	return (dup_str);
 }
