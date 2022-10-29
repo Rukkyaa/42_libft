@@ -6,7 +6,7 @@
 /*   By: rukkyaa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 12:51:37 by rukkyaa           #+#    #+#             */
-/*   Updated: 2022/10/21 17:08:54 by rukkyaa          ###   ########.fr       */
+/*   Updated: 2022/10/29 18:19:08 by rukkyaa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	j;
 
 	i = 0;
-	if (!big || big == little)
+	if (!(*little))
 		return ((char *)big);
 	while (big[i] && i < len)
 	{
