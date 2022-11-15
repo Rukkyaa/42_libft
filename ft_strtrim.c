@@ -6,7 +6,7 @@
 /*   By: rukkyaa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:59:33 by rukkyaa           #+#    #+#             */
-/*   Updated: 2022/10/21 17:21:52 by rukkyaa          ###   ########.fr       */
+/*   Updated: 2022/11/12 15:40:54 by axlamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
 
+	if (!s1)
+		return (NULL);
 	while (*s1 && ft_strchr(set, *s1))
 		s1 ++;
 	i = ft_strlen(s1);

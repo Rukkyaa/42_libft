@@ -6,7 +6,7 @@
 /*   By: rukkyaa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:04:17 by rukkyaa           #+#    #+#             */
-/*   Updated: 2022/10/21 15:22:27 by rukkyaa          ###   ########.fr       */
+/*   Updated: 2022/11/12 15:39:40 by axlamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*strjoin;
 
+	if (!s1 || !s2)
+		return (NULL);
 	strjoin = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!strjoin)
 		return (NULL);

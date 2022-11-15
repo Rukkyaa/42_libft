@@ -6,13 +6,11 @@
 /*   By: rukkyaa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:53:47 by rukkyaa           #+#    #+#             */
-/*   Updated: 2022/10/21 21:22:38 by rukkyaa          ###   ########.fr       */
+/*   Updated: 2022/11/07 10:48:12 by axlamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-#include <stdio.h>
 
 static unsigned int	nb_len(long nb)
 {
@@ -61,11 +59,3 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-
-/*
-int	main(int argc, char **argv)
-{
-	(void) argc;
-	printf("%d -> %s\n", ft_atoi(argv[1]), ft_itoa(ft_atoi(argv[1])));
-}
-*/

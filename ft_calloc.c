@@ -6,7 +6,7 @@
 /*   By: rukkyaa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 17:20:02 by rukkyaa           #+#    #+#             */
-/*   Updated: 2022/10/21 23:26:17 by rukkyaa          ###   ########.fr       */
+/*   Updated: 2022/11/12 16:10:28 by axlamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	size_t	i;
 
 	i = 0;
-	if (nmemb * size < size)
+	if (size && nmemb > SIZE_MAX / size)
 		return (NULL);
 	content = malloc (nmemb * size);
 	if (!content)
@@ -30,13 +30,3 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	}
 	return (content);
 }
-
-/*
-int	main(void)
-{
-	void	*mem;
-
-	mem = ft_calloc(2, 2);
-	(void)mem;
-}
-*/
