@@ -3,48 +3,76 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rukkyaa <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: axlamber <axlamber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 17:19:09 by rukkyaa           #+#    #+#              #
-#    Updated: 2022/11/12 16:34:47 by axlamber         ###   ########.fr        #
+#    Updated: 2023/01/18 11:57:12 by axlamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
-		ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_toupper.c \
-		ft_tolower.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c \
-		ft_memcmp.c ft_atoi.c ft_calloc.c ft_strdup.c ft_putnbr_fd.c \
-		ft_strnstr.c ft_memmove.c ft_substr.c ft_strjoin.c ft_strmapi.c \
-		ft_strtrim.c ft_split.c ft_itoa.c ft_striteri.c ft_putchar_fd.c \
-		ft_putstr_fd.c ft_putendl_fd.c ft_strlcat.c ft_strlcpy.c
-
 BONUS_SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
-		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
-
-OBJS = ${SRC:.c=.o}
+		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c 
 
 BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
-INCLUDE = includes/
+# CHECKING FUNCTION
+CHECKING = $(addprefix ft_, $(addsuffix .c, \
+	isalpha isdigit isalnum isascii isprint))
+CHECKING_OBJS = $(CHECKING:%.c=.build/%.o)
 
-.c.o :
-	cc -Wall -Wextra -Werror -I ${INCLUDE} -c $< -o ${<:.c=.o}
+# STRING FUNCTIONS
+STRING = $(addprefix ft_, $(addsuffix .c, \
+			strlen toupper tolower strchr strrchr strncmp strdup strnstr \
+			strjoin strmapi strtrim substr split striteri strlcat strlcpy))
+STRING_OBJS = $(STRING:%.c=.build/%.o)
 
-all: ${NAME}
+# CONVERTION FUNCTION
+CONVERTION = $(addprefix ft_, $(addsuffix .c, \
+			itoa atoi))
+CONVERTION_OBJS = $(CONVERTION:%.c=.build/%.o)
 
-$(NAME): ${OBJS}
-	ar -rcs ${NAME} ${OBJS}
+# MEMORY FUNCTION
+MEMORY = $(addprefix ft_, $(addsuffix .c, \
+			memset bzero memcpy memchr memcmp calloc memmove))
+MEMORY_OBJS = $(MEMORY:%.c=.build/%.o)
+
+# PRINT FUNCTION
+PRINT = $(addprefix ft_, $(addsuffix .c, \
+			putnbr_fd putchar_fd putstr_fd putendl_fd))
+PRINT_OBJS = $(PRINT:%.c=.build/%.o)
+
+# UTILS
+AR = ar -rcs
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+RM = rm -rf
+HEADERS = -I includes/
+
+.build/%.o : %.c
+		@setterm -cursor off
+		@mkdir -p .build
+		@printf "\033[32mCompiling $@... \033[K\033[m\r"
+		@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
+
+all: $(NAME)
+
+$(NAME): \
+	$(STRING_OBJS) $(MEMORY_OBJS) $(CONVERTION_OBJS) \
+	$(PRINT_OBJS) $(CHECKING_OBJS)
+	@$(AR) $(NAME) $(OBJS)
+	@printf "\033[K\033[1;32m Libft : compiled\n\033[m"
+	@setterm -cursor on
 
 bonus: $(OBJS) $(BONUS_OBJS)
-	ar -rcs $(NAME) $(OBJS) $(BONUS_OBJS)
-
+	@$(AR) $(NAME) $(OBJS) $(BONUS_OBJS)
+	
 clean:
-	rm -f ${OBJS} $(BONUS_OBJS)
+	@$(RM) .build $(BONUS_OBJS)
 
 fclean: clean
-	rm -f ${NAME}
+	@$(RM) $(NAME)
 
 re: fclean all
 
